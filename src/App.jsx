@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.scss'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -20,11 +20,12 @@ const App = () => {
   }
 
   // 查天气
+  const [curCity, setCurCity] = useState('')
   const temperature = useSelector((state) => state.temperature.data)
-  const status = useSelector((state) => state.temperature.isFetching)
+  const getStatus = useSelector((state) => state.temperature.status)
 
   const handleFetchTemperature = () => {
-    dispatch.temperature.fetchingData('广州')
+    dispatch.temperature.fetchingData(curCity)
   }
 
   return (
@@ -38,9 +39,17 @@ const App = () => {
       </div>
       <div>
         <h3>查天气</h3>
-        <button onClick={handleFetchTemperature}>获取广州温度</button>
-        <span>今天广州的温度为{temperature}</span>
-        <p>查询状态：{status}</p>
+        <input
+          placeholder="请输入城市名"
+          type="text"
+          value={curCity}
+          onChange={(e) => setCurCity(e.target.value)}
+        />
+        <button onClick={handleFetchTemperature}>获取温度</button>
+        <p>
+          今天{curCity || '__'}的温度为{temperature || '__'}
+        </p>
+        <p>查询状态：{getStatus || '__'}</p>
       </div>
     </>
   )
