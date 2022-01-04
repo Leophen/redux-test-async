@@ -1,6 +1,9 @@
 div {
   padding: 20px 100px;
-  button {
+  button,input {
     margin-right: 8px;
+  }
+  input {
+    height: 19px;
   }
 }

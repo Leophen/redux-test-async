@@ -22,19 +22,16 @@ export const handleMultiCount = (state, payload) => {
 }
 
 export const handleFetchingData = (state, payload) => {
-  const curTemperature = async (city) => {
-    await axios
-      .get(`http://wthrcdn.etouch.cn/weather_mini?city=${city}`)
-      .then(function (response) {
-        console.log(response)
-        // dispatch.temperature.fetchingDataSuccess()
-      })
-      .catch(function (error) {
-        console.log(error)
-        // dispatch.temperature.fetchingDataFailure()
-      })
-  }
-  curTemperature(payload)
+  axios
+    .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
+    .then((res) => {
+      console.log(res.data)
+      // dispatch.temperature.fetchingDataSuccess()
+    })
+    .catch((error) => {
+      console.log(error)
+      // dispatch.temperature.fetchingDataFailure()
+    })
   return {
     ...state,
     status: '正在查询'
