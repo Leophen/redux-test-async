@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './index.scss'
 import { useSelector, useDispatch } from 'react-redux'
+import {getDataAction} from './store/actions'
 
 const App = () => {
   // 计数器
@@ -25,7 +26,8 @@ const App = () => {
   const getStatus = useSelector((state) => state.temperature.status)
 
   const handleFetchTemperature = () => {
-    dispatch.temperature.fetchingData(curCity)
+    // dispatch.temperature.fetchingData(curCity)
+    dispatch(getDataAction(curCity))
   }
 
   return (

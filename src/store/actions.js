@@ -22,16 +22,16 @@ export const handleMultiCount = (state, payload) => {
 }
 
 export const handleFetchingData = (state, payload) => {
-  axios
-    .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
-    .then((res) => {
-      console.log(res.data)
-      // dispatch.temperature.fetchingDataSuccess()
-    })
-    .catch((error) => {
-      console.log(error)
-      // dispatch.temperature.fetchingDataFailure()
-    })
+  // axios
+  //   .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
+  //   .then((res) => {
+  //     console.log(res.data)
+  //     // dispatch.temperature.fetchingDataSuccess()
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //     // dispatch.temperature.fetchingDataFailure()
+  //   })
   return {
     ...state,
     status: '正在查询'
@@ -51,5 +51,23 @@ export const handleFetchingDataFailure = (state, payload) => {
   return {
     ...state,
     status: '查询失败'
+  }
+}
+
+export const getDataAction = (payload) => {
+  return (dispatch) => {
+    dispatch({ type: 'temperature/fetchingData' })
+    axios
+      .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
+      .then((res) => {
+        dispatch({
+          type: 'temperature/fetchingDataSuccess',
+          payload: res.data.data.wendu
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch({ type: 'temperature/fetchingDataFailure' })
+      })
   }
 }
