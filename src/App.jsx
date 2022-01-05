@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './index.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import {getDataAction} from './store/actions'
+import { getDataAction } from './store/actions'
 
 const App = () => {
   // 计数器
