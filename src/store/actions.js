@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 
 export const handleAddCount = (state, payload) => {
   console.log(`传入的参数为 ${payload}`)
@@ -22,16 +22,16 @@ export const handleMultiCount = (state, payload) => {
 }
 
 export const handleFetchingData = (state, payload) => {
-  axios
-    .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
-    .then((res) => {
-      console.log(res.data)
-      // dispatch.temperature.fetchingDataSuccess()
-    })
-    .catch((error) => {
-      console.log(error)
-      // dispatch.temperature.fetchingDataFailure()
-    })
+  // axios
+  //   .get(`http://wthrcdn.etouch.cn/weather_mini?city=${payload}`)
+  //   .then((res) => {
+  //     console.log(res.data)
+  //     // dispatch.temperature.fetchingDataSuccess()
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //     // dispatch.temperature.fetchingDataFailure()
+  //   })
   return {
     ...state,
     status: '正在查询'
